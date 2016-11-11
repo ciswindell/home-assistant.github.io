@@ -130,6 +130,11 @@ Print out a list of all the sensor states.
 {{ as_timestamp(states.binary_sensor.garage_door.last_changed) }}
 
 {{ as_timestamp(now) - as_timestamp(states.binary_sensor.garage_door.last_changed) }}{% endraw %}
+
+{%- if  states('sensor.temp__kitchen') | int - states.climate.thermostat.attributes.current_temperature | int > 1-%}
+  Kitchen is Hot!
+{%- endif %}
+ Tip: To use math make sure your sensor value is an integer by using "| int"
 ```
 
 ### {% linkable_title Distance examples %}
